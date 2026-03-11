@@ -7,7 +7,7 @@ xor_gate uut(
     .c(C),
     .b(B)
 );
-//and1 u1(.a(t_a),.c(t_c),.b(t_b));
+
 initial begin
     A=0; B=0; #10
     A=0; B=1; #10
@@ -15,6 +15,7 @@ initial begin
     A=1; B=1; #10;
     $finish;
 end
+
 initial begin
     $dumpfile("xor_gate.vcd");
     $dumpvars();

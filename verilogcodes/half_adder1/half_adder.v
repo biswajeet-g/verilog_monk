@@ -1,5 +1,5 @@
 //Behavioural Modeling
-/*module half_adder(
+module half_adder(
     input a,
     input b,
     output reg sum,
@@ -22,7 +22,7 @@ begin
     end
 end
 
-endmodule*/
+endmodule
 
 //Data Flow Modeling
 module half_adder(
@@ -38,7 +38,7 @@ assign carry = a&b;
 endmodule
 
 //Gate Level Modeling
-/*module half_adder 
+module half_adder 
 (
     input a,b,
     output sum,carry

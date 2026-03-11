@@ -1,5 +1,5 @@
 $date
-	Wed Mar 11 21:21:53 2026
+	Wed Mar 11 21:24:33 2026
 $end
 $version
 	Icarus Verilog
@@ -7,14 +7,14 @@ $end
 $timescale
 	1ps
 $end
-$scope module nor_gate_tb $end
+$scope module xnor_gate1_tb $end
 $var wire 1 ! C $end
 $var reg 1 " A $end
 $var reg 1 # B $end
 $scope module uut $end
 $var wire 1 " a $end
 $var wire 1 # b $end
-$var wire 1 ! c $end
+$var reg 1 ! c $end
 $upscope $end
 $upscope $end
 $enddefinitions $end
@@ -34,5 +34,6 @@ $end
 0#
 1"
 #30000
+1!
 1#
 #40000

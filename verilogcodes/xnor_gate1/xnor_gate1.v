@@ -1,5 +1,5 @@
 //Behavioural Modeling
-module nor_gate(
+module xnor_gate1(
     input a,
     input b,
     output reg c
@@ -9,29 +9,32 @@ always @(a,b) //Sensitivity list
 begin
     if(a==0 && b==0)
         c<=1;
-    else 
+    else if(a==0 && b==1)
         c<=0;
+    else if(a==1 && b==0)
+        c<=0;
+    else 
+        c<=1;
 end
 
 endmodule
 
 //Gate Level Modeling
-module nor_gate(
+module xnor_gate1(
     input a,
     input b,
     output c
 );
-wire c_1;
-or(c_1,a,b);
-not(c,c_1);
+xor(c,a,b);
+
 endmodule
 
 //Data Flow Modeling
-module nor_gate(
+module xnor_gate1(
     input a,
     input b,
     output c
 );
 
-assign c=~(a|b);
+assign c=(a^b);
 endmodule

@@ -1,3 +1,4 @@
+//Behavioural Modeling
 module or_gate(
     input a,
     input b,
@@ -12,4 +13,25 @@ begin
         c<=1;
 end
 
+endmodule
+
+//Gate Level Modeling
+module or_gate(
+    input a,
+    input b,
+    output c
+);
+
+or(c,a,b);
+
+endmodule
+
+//Data Flow Modeling
+module or_gate(
+    input a,
+    input b,
+    output c
+);
+
+assign c=(a|b);
 endmodule

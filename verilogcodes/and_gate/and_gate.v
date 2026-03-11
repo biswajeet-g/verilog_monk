@@ -1,10 +1,11 @@
+//Behavioural Modeling
 module and_gate(
     input a,
     input b,
     output reg c
 );
 
-always @(*) //Sensitivity list
+always @(a,b) //Sensitivity list
 begin
     if(a==0 && b==0)
         c<=0;
@@ -17,3 +18,22 @@ begin
 end
 
 endmodule
+//Gate Level Modeling
+module and_gate(
+    input a,
+    input b,
+    output c
+);
+and(c,a,b);
+
+endmodule
+
+//Data Flow Modeling
+module and_gate(
+    input a,
+    input b,
+    output c
+);
+
+assign c=(a&b);
+endmodule 

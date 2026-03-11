@@ -1,3 +1,4 @@
+//Behavioural Modeling
 module xor_gate(
     input a,
     input b,
@@ -16,4 +17,24 @@ begin
         c<=0;
 end
 
+endmodule
+
+//Gate Level Modeling
+module xor_gate(
+    input a,
+    input b,
+    output c
+);
+xor(c,a,b);
+
+endmodule
+
+//Data Flow Modeling
+module xor_gate(
+    input a,
+    input b,
+    output c
+);
+
+assign c=(a^b);
 endmodule

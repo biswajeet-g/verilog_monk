@@ -7,7 +7,6 @@ nor_gate uut(
     .c(C),
     .b(B)
 );
-//and1 u1(.a(t_a),.c(t_c),.b(t_b));
 initial begin
     A=0; B=0; #10
     A=0; B=1; #10
