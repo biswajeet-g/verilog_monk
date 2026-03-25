@@ -46,8 +46,9 @@ module and_gate(
 assign c=(a&b);
 endmodule 
 ```
-```
+
 ##### TestBench
+```
 `timescale 1ns/1ps
 module and_gate_tb;
 reg A,B; //for storing of data 
