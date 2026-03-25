@@ -5,6 +5,7 @@
 
 #### AND Gates
 ##### RTL Code
+```
 //Behavioural Modeling
 module and_gate(
     input a,
@@ -68,6 +69,7 @@ initial begin
 end
 
 endmodule
+```
 
 ##### Waveform Result 
 <img width="793" height="121" alt="andgate" src="https://github.com/user-attachments/assets/f3664660-79b5-42f4-bf04-1cc5adcefe46" />
