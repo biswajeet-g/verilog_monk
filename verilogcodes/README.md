@@ -285,3 +285,78 @@ endmodule
 ##### Waveform Result
 <img width="796" height="124" alt="norgate" src="https://github.com/user-attachments/assets/d9107774-4ec2-4e2e-9720-c7f3ab421dfc" />
 
+#### XNOR Gate
+##### RTL Code
+```
+//Behavioural Modeling
+module xnor_gate1(
+    input a,
+    input b,
+    output reg c
+);
+
+always @(a,b) //Sensitivity list
+begin
+    if(a==0 && b==0)
+        c<=1;
+    else if(a==0 && b==1)
+        c<=0;
+    else if(a==1 && b==0)
+        c<=0;
+    else 
+        c<=1;
+end
+
+endmodule
+
+//Gate Level Modeling
+/*module xnor_gate1(
+    input a,
+    input b,
+    output c
+);
+xor(c,a,b);
+
+endmodule
+
+//Data Flow Modeling
+module xnor_gate1(
+    input a,
+    input b,
+    output c
+);
+
+assign c=(a^b);
+endmodule*/
+```
+##### TestBench
+```
+`timescale 1ns/1ps
+module xnor_gate1_tb;
+reg A,B; //for storing of data 
+wire C; //for transport of data
+
+xnor_gate1 uut(
+    .a(A),
+    .c(C),
+    .b(B)
+);
+
+
+initial begin
+    A=0; B=0; #10
+    A=0; B=1; #10
+    A=1; B=0; #10
+    A=1; B=1; #10;
+    $finish;
+end
+
+initial begin
+    $dumpfile("xnor_gate.vcd");
+    $dumpvars(0,xnor_gate1_tb);
+end
+endmodule
+```
+
+##### Waveform Result
+<img width="792" height="132" alt="xnorgate" src="https://github.com/user-attachments/assets/8079faa3-9458-4d62-a026-6cd09ac0eefc" />
