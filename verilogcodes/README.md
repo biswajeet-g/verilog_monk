@@ -1,6 +1,6 @@
 # Verilog Experiments
 
-## Experiment 1:
+## Experiment 1: To design Logic Gates using Verilog HDL
 ### To design Logic Gates using Verilog HDL
 
 #### AND Gates
