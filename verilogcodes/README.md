@@ -360,3 +360,79 @@ endmodule
 
 ##### Waveform Result
 <img width="792" height="132" alt="xnorgate" src="https://github.com/user-attachments/assets/8079faa3-9458-4d62-a026-6cd09ac0eefc" />
+
+#### XOR gate
+
+##### RTL Code
+```
+//Behavioural Modeling
+module xor_gate(
+    input a,
+    input b,
+    output reg c
+);
+
+always @(a,b) //Sensitivity list
+begin
+    if(a==0 && b==0)
+        c<=0;
+    else if(a==0 && b==1)
+        c<=1;
+    else if(a==1 && b==0)
+        c<=1;
+    else 
+        c<=0;
+end
+
+endmodule
+
+//Gate Level Modeling
+/*module xor_gate(
+    input a,
+    input b,
+    output c
+);
+xor(c,a,b);
+
+endmodule
+
+//Data Flow Modeling
+module xor_gate(
+    input a,
+    input b,
+    output c
+);
+
+assign c=(a^b);
+endmodule*/
+```
+
+##### TestBench
+```
+`timescale 1ns/1ps
+module xor_gate_tb;
+reg A,B; //for storing of data 
+wire C; //for transport of data
+xor_gate uut(
+    .a(A),
+    .c(C),
+    .b(B)
+);
+
+initial begin
+    A=0; B=0; #10
+    A=0; B=1; #10
+    A=1; B=0; #10
+    A=1; B=1; #10;
+    $finish;
+end
+
+initial begin
+    $dumpfile("xor_gate.vcd");
+    $dumpvars();
+end
+
+endmodule
+```
+##### Waveform Result
+<img width="798" height="151" alt="xorgate" src="https://github.com/user-attachments/assets/2d4fead0-d3f6-456c-a142-69128041ca65" />
