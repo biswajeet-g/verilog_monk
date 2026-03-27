@@ -215,3 +215,73 @@ endmodule
 ##### Waveform Result
 <img width="808" height="129" alt="nandgate" src="https://github.com/user-attachments/assets/5d16bfd6-7f3f-4c12-b15a-a7b0ada618d2" />
 
+#### NOR Gate
+##### RTL Code
+```
+//Behavioural Modeling
+module nor_gate(
+    input a,
+    input b,
+    output reg c
+);
+
+always @(a,b) //Sensitivity list
+begin
+    if(a==0 && b==0)
+        c<=1;
+    else 
+        c<=0;
+end
+
+endmodule
+
+//Gate Level Modeling
+/*module nor_gate(
+    input a,
+    input b,
+    output c
+);
+wire c_1;
+or(c_1,a,b);
+not(c,c_1);
+endmodule
+
+//Data Flow Modeling
+module nor_gate(
+    input a,
+    input b,
+    output c
+);
+
+assign c=~(a|b);
+endmodule*/
+```
+###### TestBench
+```
+`timescale 1ns/1ps
+module nor_gate_tb;
+reg A,B; //for storing of data 
+wire C; //for transport of data
+nor_gate uut(
+    .a(A),
+    .c(C),
+    .b(B)
+);
+initial begin
+    A=0; B=0; #10
+    A=0; B=1; #10
+    A=1; B=0; #10
+    A=1; B=1; #10;
+    $finish;
+end
+initial begin
+    $dumpfile("nor_gate.vcd");
+    $dumpvars();
+end
+
+endmodule
+```
+
+##### Waveform Result
+<img width="796" height="124" alt="norgate" src="https://github.com/user-attachments/assets/d9107774-4ec2-4e2e-9720-c7f3ab421dfc" />
+
