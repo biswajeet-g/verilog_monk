@@ -1,6 +1,6 @@
 # Verilog Experiments
 
-## Experiment 1: To design Logic Gates using Verilog HDL
+## Experiment 1:
 ### To design Logic Gates using Verilog HDL
 
 #### AND Gates
@@ -145,3 +145,73 @@ endmodule
 
 ##### Waveform Result
 <img width="789" height="127" alt="orgate" src="https://github.com/user-attachments/assets/d37d2dde-9b10-4c6a-8c12-6734a08a83ec" />
+
+#### NAND Gate
+##### RTL Code
+```
+//Behavioural Modeling
+module nand_gate(
+    input a,
+    input b,
+    output reg c
+);
+
+always @(a,b) //Sensitivity list
+begin
+    if(a==1 && b==1)
+        c<=0;
+    else 
+        c<=1;
+end
+
+endmodule
+
+//Gate Level Modeling
+/*module nand_gate(
+    input a,
+    input b,
+    output c
+);
+wire c_1;
+and(c_1,a,b);
+not(c,c_1);
+
+endmodule
+//Data Flow Modeling
+module nand_gate(
+    input a,
+    input b,
+    output c
+);
+
+assign c=~(a&b);
+endmodule*/
+```
+##### TestBench
+```
+`timescale 1ns/1ps
+module nand_gate_tb;
+reg A,B; //for storing of data 
+wire C; //for transport of data
+nand_gate uut(
+    .a(A),
+    .c(C),
+    .b(B)
+);
+initial begin
+    A=0; B=0; #10
+    A=0; B=1; #10
+    A=1; B=0; #10
+    A=1; B=1; #10;
+    $finish;
+end
+initial begin
+    $dumpfile("nand_gate.vcd");
+    $dumpvars();
+end
+
+endmodule
+```
+##### Waveform Result
+<img width="808" height="129" alt="nandgate" src="https://github.com/user-attachments/assets/5d16bfd6-7f3f-4c12-b15a-a7b0ada618d2" />
+
