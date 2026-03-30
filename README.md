@@ -143,6 +143,7 @@ endmodule
 
 ##### Waveform Result
 <img width="789" height="127" alt="orgate" src="https://github.com/user-attachments/assets/d37d2dde-9b10-4c6a-8c12-6734a08a83ec" />
+
 #### NAND Gate
 ##### RTL Code
 ```
