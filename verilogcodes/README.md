@@ -522,3 +522,91 @@ endmodule
 ```
 ##### Waveform Result
 <img width="809" height="153" alt="halfadder" src="https://github.com/user-attachments/assets/c70e8010-0d19-4cdc-84d7-a54b9bbe9758" />
+
+#### Half Subtractor
+##### RTL Code
+```
+//Behavioural Modeling
+module half_sub(
+    input a,
+    input b,
+    output reg diff,
+    output reg borrow
+);
+always @(a,b)
+begin
+    if(a==0 && b==0)begin
+        diff=0; borrow=0;
+    end
+    else if(a==0 && b==1)begin
+        diff=1; borrow=1;
+    end
+    else if(a==1 && b==0)begin
+        diff=1; borrow=0;
+    end
+    else if(a==1 && b==1)begin
+        diff=0; borrow=0;
+    end
+end
+
+endmodule
+
+
+//Data Flow Modeling
+/*module half_sub(
+    input a,
+    input b,
+    output diff,
+    output borrow
+);
+
+assign diff = a^b;
+assign borrow = (~a)&b;
+
+endmodule
+
+//Gate Level Modeling
+module half_sub 
+(
+    input a,b,
+    output diff,borrow
+);
+wire a_reg;
+xor(diff,a,b);
+not(a_reg,a);
+and(borrow,a_reg,b);
+endmodule*/
+```
+##### TestBench
+```
+`timescale 1ns/1ps
+module half_sub_tb;
+
+reg A,B;
+wire Bo;
+wire D;
+
+half_sub uut(
+    .a(A),
+    .b(B),
+    .borrow(Bo),
+    .diff(D)
+);
+
+initial begin
+    A=0; B=0; #10
+    A=0; B=1; #10
+    A=1; B=0; #10
+    A=1; B=1; #10
+    $finish;
+end
+initial begin
+    $dumpfile("half_sub.vcd");
+    $dumpvars();
+end
+
+endmodule
+```
+
+##### Waveform Result
+<img width="1131" height="142" alt="halfsub" src="https://github.com/user-attachments/assets/662f1339-4243-4400-9d5b-7508a21b1293" />
