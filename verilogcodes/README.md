@@ -436,3 +436,89 @@ endmodule
 ```
 ##### Waveform Result
 <img width="798" height="151" alt="xorgate" src="https://github.com/user-attachments/assets/2d4fead0-d3f6-456c-a142-69128041ca65" />
+
+## Experiment 2
+### To Design Half Adder and Half Subtractor using Verilog HDL
+
+#### Half Adder
+##### RTL Code
+```
+//Behavioural Modeling
+module half_adder(
+    input a,
+    input b,
+    output reg sum, //procedural assignment
+    output reg carry
+);
+
+always @(a,b)
+begin
+    if(a==0 && b==0)begin
+        sum=0; carry=0; 
+        end
+    else if(a==0 && b==1)begin
+        sum=1; carry=0; 
+        end
+    else if(a==1 && b==0)begin
+        sum=1; carry=0; 
+        end
+    else if(a==1 && b==1)begin
+        sum=0; carry=1;
+    end
+end
+
+endmodule
+
+//Data Flow Modeling
+/*module half_adder(
+    input a,
+    input b,
+    output sum,
+    output carry
+);
+
+assign sum = a^b;
+assign carry = a&b;
+
+endmodule
+
+//Gate Level Modeling
+module half_adder 
+(
+    input a,b,
+    output sum,carry
+);
+
+xor(sum,a,b);
+and(carry,a,b);
+endmodule*/
+```
+##### TestBench
+```
+`timescale 1ns/1ps
+module half_adder_tb;
+reg A,B; //for storing of data 
+wire C;
+wire S; //for transport of data
+half_adder uut(
+    .a(A),
+    .carry(C),
+    .b(B),
+    .sum(S)
+);
+initial begin
+    A=0; B=0; #10
+    A=0; B=1; #10
+    A=1; B=0; #10
+    A=1; B=1; #10;
+    $finish;
+end
+initial begin
+    $dumpfile("half_adder.vcd");
+    $dumpvars();
+end
+
+endmodule
+```
+##### Waveform Result
+<img width="809" height="153" alt="halfadder" src="https://github.com/user-attachments/assets/c70e8010-0d19-4cdc-84d7-a54b9bbe9758" />
