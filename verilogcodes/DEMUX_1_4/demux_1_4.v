@@ -1,5 +1,5 @@
 //Behavioral Modeling
-/*module demux_1_4(
+module demux_1_4(
     input d,
     input [1:0]s,
     output reg yout,
@@ -25,10 +25,10 @@ begin
     end
 end
 
-endmodule*/
+endmodule
 
 //Gate-Level Modeling
-/*module demux_1_4(
+module demux_1_4(
     output [3:0]y,
     input [1:0]s,
     input d
@@ -42,7 +42,7 @@ and a2(y[1],sbar1,s[0],d);
 and a3(y[2],s[1],sbar0,d);
 and a4(y[3],s[1],s[0],d);
 
-endmodule*/
+endmodule
 
 //Dataflow Modeling
 module demux_1_4(
