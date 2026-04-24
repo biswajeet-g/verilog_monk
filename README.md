@@ -810,3 +810,359 @@ endmodule
 ```
 ##### Waveform Result
 <img width="1134" height="157" alt="fullsub" src="https://github.com/user-attachments/assets/255c43e0-ac9c-41b7-9a23-d91e69cf714f" />
+
+## Experiment 4
+### To Design a 4:1 MUX
+##### RTL Code
+```
+//Behavioral Modeling
+/*module mux_4_1(
+    input [3:0]i,
+    input [1:0]s,
+    output reg y
+);
+
+always @(i or s)
+begin
+    if(s[1]==1'b0 && s[0]==1'b0)
+    y=i[0];
+    else if (s[1]==1'b0 && s[0]==1'b1)
+    y=i[1];
+    else if (s[1]==1'b1 && s[0]==1'b0)
+    y=i[2];
+    else if (s[1]==1'b1 && s[0]==1'b1)
+    y=i[3];
+end
+
+endmodule*/
+
+//DataFlow Modeling
+/*module mux_4_1(
+    input [3:0]i,
+    input [1:0]s,
+    output y
+);
+
+wire [3:0]w;
+assign w[0]=((~s[1])&(~s[0])&i[0]);
+assign w[1]=((~s[1])&(s[0])&i[1]);
+assign w[2]=((s[1])&(~s[0])&i[2]);
+assign w[3]=((s[1])&(s[0])&i[3]);
+assign y=w[0]|w[1]|w[2]|w[3];
+
+endmodule*/
+
+//Gate-level modeling
+/*module mux_4_1(
+    output y,
+    input [3:0]i,
+    input [1:0]s
+);
+wire sbar1,sbar0;
+wire w1,w2,w3,w4;
+not n1(s_1,s[1]);
+not n2(s_0,s[0]);
+and a1(w1,i[0],s[0],s_1);
+and a2(w2,i[1],s[0],s_1);
+and a3(w3,i[2],s_0,s[1]);
+and a4(w4,i[3],s[1],s[0]);
+or o1(y,w2,w3,w4,w1);
+
+endmodule*/
+
+//DataFlow Modeling
+module mux_4_1(
+    output y,
+    input [3:0]i,
+    input [1:0]s
+);
+
+wire w1,w2,w3,w4;
+assign w1=(~s[1])&(~s[0])&i[0];
+assign w2=(~s[1])&(s[0])&i[1];
+assign w3=(s[1])&(~s[0])&i[2];
+assign w1=(s[1])&(s[0])&i[3];
+assign y=w1|w2|w3|w4;
+
+endmodule
+```
+
+##### Testbench
+```
+`timescale 1ns/1ps
+module mux_4tb;
+reg [3:0]i;
+reg [1:0]s;
+wire y;
+mux_4_1 uut(
+    .i(i),
+    .s(s),
+    .y(y)
+);
+initial begin
+    i=4'b1010;
+    s[1]=0; s[0]=0; #10
+    s[1]=0; s[0]=1; #10
+    s[1]=1; s[0]=0; #10
+    s[1]=1; s[0]=1; #10
+    $finish;
+end
+
+initial begin
+    $dumpfile("mux_4_1.vcd");
+    $dumpvars();
+end
+endmodule
+```
+
+##### Waveform Result
+
+## Experiment 5
+### To Design a 1:4 DEMUX
+##### RTL Code
+```
+//Behavioral Modeling
+module demux_1_4(
+    input d,
+    input [1:0]s,
+    output reg yout,
+    output reg [3:0]y
+);
+
+always @(d or s)
+begin
+    if(d==0)begin
+        y[0]=0; y[1]=0; y[2]=0; y[3]=0;
+    end
+    else if (d==1 && s[1]==1'b0 && s[0]==1'b0) begin
+       y[0]=1; y[1]=0; y[2]=0; y[3]=0;
+    end
+    else if (d==1 && s[1]==1'b0 && s[0]==1'b1) begin
+        y[0]=0; y[1]=1; y[2]=0; y[3]=0;
+    end
+    else if (d==1 && s[1]==1'b1 && s[0]==1'b0) begin
+        y[0]=0; y[1]=0; y[2]=1; y[3]=0;
+    end
+    else if (d==1 && s[1]==1'b1 && s[0]==1'b1) begin
+        y[0]=0; y[1]=0; y[2]=0; y[3]=1;
+    end
+end
+
+endmodule
+
+//Gate-Level Modeling
+module demux_1_4(
+    output [3:0]y,
+    input [1:0]s,
+    input d
+);
+
+wire sbar1,sbar0;
+not n1(sbar1,s[1]);
+not n2(sbar0,s[0]);
+and a1(y[0],sbar1,sbar0,d);
+and a2(y[1],sbar1,s[0],d);
+and a3(y[2],s[1],sbar0,d);
+and a4(y[3],s[1],s[0],d);
+
+endmodule
+
+//Dataflow Modeling
+module demux_1_4(
+    input [1:0]s,
+    input d,
+    output [3:0]y
+);
+
+assign y[0]=((~s[1])&(~s[0])&d);
+assign y[1]=((~s[1])&(s[0])&d);
+assign y[2]=((s[1])&(~s[0])&d);
+assign y[3]=((s[1])&(s[0])&d);
+endmodule
+```
+
+##### Testbench 
+```
+`timescale 1ns/1ps
+module demux4tb;
+reg d;
+reg [1:0]s;
+wire [3:0]y;
+demux_1_4 uut(
+    .d(d),
+    .s(s),
+    .y(y)
+);
+
+initial begin
+    d=4'b1111;
+    s[1]=0; s[0]=0; #10
+    s[1]=0; s[0]=1; #10
+    s[1]=1; s[0]=0; #10
+    s[1]=1; s[0]=1; #10
+    $finish;
+end
+
+initial begin
+    $dumpfile("demux_1_4.vcd");
+    $dumpvars();
+end
+endmodule
+```
+
+##### Waveform Result
+
+## Experiment 6
+### To Design, testbench and simulate Counters using Flipflop
+#### Up Counter
+##### RtL Code
+```
+// Behavioral Modeling
+// 3-Bit UP Counter
+
+module upcounter(
+    input clk,
+    input reset,
+    output reg [2:0] count
+);
+
+always @ (posedge clk or posedge reset)
+begin
+    if (reset)
+        count <= 3'b000;
+    else
+        count <= count +1; 
+end
+endmodule
+```
+##### TestBench
+```
+`timescale 1ns/1ps
+module upcounttb;
+
+reg clk, reset;
+wire [2:0] count;
+
+upcounter uut(
+    .clk(clk),
+    .reset(reset),
+    .count(count)
+);
+
+initial begin
+    clk=0;
+    forever #5 clk=~clk;
+end
+
+initial begin
+    reset=1; 
+    #10 reset=0;
+
+    #100
+
+    reset=1; 
+    #10 reset=0;
+    #50
+    $finish;
+end
+
+initial begin
+    $dumpfile("upcounter.vcd");
+    $dumpvars(0,upcounttb);
+
+end
+
+endmodule
+```
+##### Waveform Result
+
+#### Down Counter
+##### RTL Code
+```
+//Behavioral Modeling
+// 3-bit Down Counter
+
+module downcounter(
+    input clk,
+    input reset, 
+    output reg [2:0] count
+);
+
+always @ (posedge clk or posedge reset)
+begin
+    if (reset)
+        count<=3'b111;
+    else
+        count<=count -1;
+
+end
+endmodule
+```
+##### Testbench
+```
+`timescale 1ns/1ps
+module downcounttb;
+
+reg clk, reset;
+wire [2:0] count;
+
+downcounter uut(
+    .clk(clk),
+    .reset(reset),
+    .count(count)
+);
+
+initial begin
+    clk=0;
+    forever #5 clk=~clk;
+end
+
+initial begin
+    reset=1; 
+    #10 reset=0;
+
+    #100
+
+    reset=1; 
+    #10 reset=0;
+    #50
+    $finish;
+end
+
+initial begin
+    $dumpfile("downcounter.vcd");
+    $dumpvars(0,downcounttb);
+
+end
+
+endmodule
+```
+##### Waveform Result
+
+#### UpDown Counter 
+##### RTL Code
+```
+//Behavioral Modeling
+// 3-bit UP-Down Counter
+
+module updowncount(
+    input clk,
+    input reset,
+    input ud,
+    output reg [2:0] count
+
+);
+
+always @ (posedge clk or posedge reset)
+begin
+    if (reset)
+    count <= 3'b000;
+    else if (ud)
+        count<=count+1;
+    else
+        count<=count-1;
+end
+endmodule
+```
+
+##### Waveform Result 
