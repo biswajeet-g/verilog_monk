@@ -916,6 +916,8 @@ endmodule
 ```
 
 ##### Waveform Result
+<img width="1139" height="258" alt="mux41" src="https://github.com/user-attachments/assets/8b3637e0-a7d4-4c9f-a61d-9f2c61f2b115" />
+
 
 ## Experiment 5
 ### To Design a 1:4 DEMUX
@@ -1011,6 +1013,8 @@ endmodule
 ```
 
 ##### Waveform Result
+<img width="1137" height="256" alt="demux14" src="https://github.com/user-attachments/assets/a49eb01d-b114-495e-b309-7dcd8c2ddced" />
+
 
 ## Experiment 6
 ### To Design, testbench and simulate Counters using Flipflop
@@ -1075,6 +1079,7 @@ end
 endmodule
 ```
 ##### Waveform Result
+<img width="1141" height="196" alt="upcounter" src="https://github.com/user-attachments/assets/45e01b6d-b5b0-461d-b85b-8104a431d471" />
 
 #### Down Counter
 ##### RTL Code
@@ -1138,6 +1143,8 @@ end
 endmodule
 ```
 ##### Waveform Result
+<img width="1145" height="192" alt="downcounter" src="https://github.com/user-attachments/assets/71779520-b7a4-48ae-adfe-a6e8ce70f2cf" />
+
 
 #### UpDown Counter 
 ##### RTL Code
@@ -1166,3 +1173,5 @@ endmodule
 ```
 
 ##### Waveform Result 
+<img width="1141" height="225" alt="updowncounter" src="https://github.com/user-attachments/assets/beb67638-a2c8-4c05-af4e-0f9a9244c12b" />
+
