@@ -236,7 +236,7 @@ end
 endmodule
 
 //Gate Level Modeling
-/*module nor_gate(
+module nor_gate(
     input a,
     input b,
     output c
@@ -254,7 +254,7 @@ module nor_gate(
 );
 
 assign c=~(a|b);
-endmodule*/
+endmodule
 ```
 ##### TestBench
 ```
