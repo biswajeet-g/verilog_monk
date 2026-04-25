@@ -469,7 +469,7 @@ end
 endmodule
 
 //Data Flow Modeling
-/*module half_adder(
+module half_adder(
     input a,
     input b,
     output sum,
@@ -490,7 +490,7 @@ module half_adder
 
 xor(sum,a,b);
 and(carry,a,b);
-endmodule*/
+endmodule
 ```
 ##### TestBench
 ```
