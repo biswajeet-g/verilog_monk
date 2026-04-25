@@ -362,7 +362,6 @@ endmodule
 <img width="792" height="132" alt="xnorgate" src="https://github.com/user-attachments/assets/8079faa3-9458-4d62-a026-6cd09ac0eefc" />
 
 #### XOR gate
-
 ##### RTL Code
 ```
 //Behavioural Modeling
@@ -387,7 +386,7 @@ end
 endmodule
 
 //Gate Level Modeling
-/*module xor_gate(
+module xor_gate(
     input a,
     input b,
     output c
@@ -404,7 +403,7 @@ module xor_gate(
 );
 
 assign c=(a^b);
-endmodule*/
+endmodule
 ```
 
 ##### TestBench
