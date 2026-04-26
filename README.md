@@ -655,7 +655,7 @@ end
 endmodule
 
 //Gate-Level Modeling
-/*module half_adderforfull(
+module half_adderforfull(
     input a,
     input b,
     output sum,
@@ -677,7 +677,7 @@ wire w1,w2,w3;
 half_adderforfull f1(.a(A),.b(B),.sum(w1),.carry(w2));
 half_adderforfull f2(.a(w1),.b(Cin),.sum(Sum),.carry(w3));
 or f3(Carry,w3,w3);
-endmodule*/
+endmodule
 
 //Dataflow Modeling
 module full_adder(
@@ -730,7 +730,7 @@ endmodule
 ##### RTL Code
 ```
 //Behavioral Modeling
-/*module full_subtractor( 
+module full_subtractor( 
     input a,b,bin,
     output reg diff,bout); 
     always @(*) begin
@@ -744,10 +744,10 @@ else if(a==1 && b==1 && bin==0) begin diff=0;bout=0; end
 else
 begin diff=1;bout=1; end 
 end
-endmodule*/
+endmodule
 
 //Gate-level Modeling
-/*module full_subtractor(a, b, bin, diff, bout);
+module full_subtractor(a, b, bin, diff, bout);
 
 input a, b, bin;
 output diff, bout;
@@ -763,7 +763,7 @@ and (x3, nA, bin);
 and (x4, b, bin);
 or  (bout, x2, x3, x4);
 
-endmodule*/
+endmodule
 
 //Dataflow Modeling
 module full_subtractor(
