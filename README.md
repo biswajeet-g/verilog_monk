@@ -617,7 +617,7 @@ endmodule
 ##### RTL Code
 ```
 //Behavioral Modeling
-/*module full_adder(
+module full_adder(
     input a,
     input b,
     input cin,
@@ -652,7 +652,7 @@ begin
     end
 
 end
-endmodule*/
+endmodule
 
 //Gate-Level Modeling
 /*module half_adderforfull(
