@@ -836,7 +836,7 @@ end
 endmodule
 
 //DataFlow Modeling
-/*module mux_4_1(
+module mux_4_1(
     input [3:0]i,
     input [1:0]s,
     output y
@@ -849,10 +849,10 @@ assign w[2]=((s[1])&(~s[0])&i[2]);
 assign w[3]=((s[1])&(s[0])&i[3]);
 assign y=w[0]|w[1]|w[2]|w[3];
 
-endmodule*/
+endmodule
 
 //Gate-level modeling
-/*module mux_4_1(
+module mux_4_1(
     output y,
     input [3:0]i,
     input [1:0]s
@@ -867,7 +867,7 @@ and a3(w3,i[2],s_0,s[1]);
 and a4(w4,i[3],s[1],s[0]);
 or o1(y,w2,w3,w4,w1);
 
-endmodule*/
+endmodule
 
 //DataFlow Modeling
 module mux_4_1(
