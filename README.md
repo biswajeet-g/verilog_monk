@@ -552,7 +552,7 @@ endmodule
 
 
 //Data Flow Modeling
-/*module half_sub(
+module half_sub(
     input a,
     input b,
     output diff,
@@ -574,7 +574,7 @@ wire a_reg;
 xor(diff,a,b);
 not(a_reg,a);
 and(borrow,a_reg,b);
-endmodule*/
+endmodule
 ```
 ##### TestBench
 ```
