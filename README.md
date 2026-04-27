@@ -167,7 +167,7 @@ end
 endmodule
 
 //Gate Level Modeling
-/*module nand_gate(
+module nand_gate(
     input a,
     input b,
     output c
@@ -185,7 +185,7 @@ module nand_gate(
 );
 
 assign c=~(a&b);
-endmodule*/
+endmodule
 ```
 ##### TestBench
 ```
