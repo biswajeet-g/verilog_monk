@@ -310,7 +310,7 @@ end
 endmodule
 
 //Gate Level Modeling
-/*module xnor_gate1(
+module xnor_gate1(
     input a,
     input b,
     output c
@@ -327,7 +327,7 @@ module xnor_gate1(
 );
 
 assign c=(a^b);
-endmodule*/
+endmodule
 ```
 ##### TestBench
 ```
