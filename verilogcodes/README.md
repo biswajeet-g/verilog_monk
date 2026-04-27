@@ -97,7 +97,7 @@ end
 endmodule
 
 //Gate Level Modeling
-/*module or_gate(
+module or_gate(
     input a,
     input b,
     output c
@@ -115,7 +115,7 @@ module or_gate(
 );
 
 assign c=(a|b);
-endmodule*/
+endmodule
 ```
 ##### TestBench
 ```
