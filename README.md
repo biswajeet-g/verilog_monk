@@ -1124,21 +1124,17 @@ end
 initial begin
     reset=1; 
     #10 reset=0;
-
     #100
-
     reset=1; 
     #10 reset=0;
     #50
     $finish;
 end
-
 initial begin
     $dumpfile("downcounter.vcd");
     $dumpvars(0,downcounttb);
 
 end
-
 endmodule
 ```
 ##### Waveform Result
