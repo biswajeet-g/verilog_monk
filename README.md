@@ -93,7 +93,6 @@ begin
     else 
         c<=1;
 end
-
 endmodule
 
 //Gate Level Modeling
@@ -316,7 +315,6 @@ module xnor_gate1(
     output c
 );
 xor(c,a,b);
-
 endmodule
 
 //Data Flow Modeling
@@ -335,7 +333,6 @@ endmodule
 module xnor_gate1_tb;
 reg A,B; //for storing of data 
 wire C; //for transport of data
-
 xnor_gate1 uut(
     .a(A),
     .c(C),
